@@ -1,6 +1,7 @@
 package Model;
 
 public class Tutor {
+    private long id;
     private String nome;
     private String telefone;
     private String endereco;
@@ -13,6 +14,14 @@ public class Tutor {
         this.nome = nome;
         this.telefone = telefone;
         this.endereco = endereco;
+    }
+
+    public Tutor(long id, String nome, String telefone, String endereco) {
+
+    }
+
+    public long getId() {
+        return id;
     }
 
     public String getNome() {
@@ -29,10 +38,7 @@ public class Tutor {
 
     @Override
     public String toString() {
-        return "Tutor => [" +
-                "nome: '" + nome + '\'' +
-                ", telefone: '" + telefone + '\'' +
-                ", endereco: '" + endereco + '\'' +
-                ']';
+        return "Tutor => [nome: '%s', telefone: '%s', endereco: '%s']"
+                .formatted(nome, telefone, endereco);
     }
 }

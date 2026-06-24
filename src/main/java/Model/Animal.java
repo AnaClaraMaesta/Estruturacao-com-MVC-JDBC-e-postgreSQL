@@ -1,6 +1,7 @@
 package Model;
 
 public class Animal {
+    private long id;
     private String nome;
     private String especie;
     private String raca;
@@ -13,6 +14,15 @@ public class Animal {
         this.nome = nome;
         this.especie = especie;
         this.raca = raca;
+    }
+
+    public Animal(long id, String nome, String especie, String raca) {
+        this(nome, especie, raca);
+        this.id = id;
+    }
+
+    public long getId() {
+        return id;
     }
 
     public String getNome() {
@@ -35,4 +45,5 @@ public class Animal {
                 ", raca='" + raca + '\'' +
                 ']';
     }
+
 }

@@ -7,14 +7,14 @@ import java.util.List;
 
 public class Consulta
 {
-    private long idConsulta;
+    private long id;
     private LocalDate dataConsulta;
     private Animal animal;
     private Tutor tutor;
     private BigDecimal valor;
-    private TextArea descricao;
-
-    public Consulta(LocalDate dataConsulta, Animal animal, Tutor tutor, BigDecimal valor, TextArea descricao)
+    private String descricao;
+    //antes de salvar
+    public Consulta(LocalDate dataConsulta, Animal animal, Tutor tutor, BigDecimal valor, String descricao)
     {
         List<String> erros = new ArrayList<>();
         if (dataConsulta == null) erros.add("Informe a data");
@@ -33,8 +33,26 @@ public class Consulta
 
     }
 
+    //depois de salvar
+    public Consulta(long id, LocalDate dataConsulta, Animal animal, Tutor tutor, BigDecimal valor, String descricao) {
+        this(dataConsulta, animal, tutor, valor, descricao);
+        this.id = id;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
     public Animal getAnimal() {
         return animal;
+    }
+
+    public Tutor getTutor() {
+        return tutor;
     }
 
     public LocalDate getDataConsulta() {
@@ -45,18 +63,13 @@ public class Consulta
         return valor;
     }
 
-    public TextArea getDescricao() {
+    public String getDescricao() {
         return descricao;
     }
 
     @Override
     public String toString() {
-        return "Consulta => [" +
-                "Data da consulta: "+ dataConsulta +
-                "Animal: " + animal +
-                "Tutor: " + tutor +
-                "Valor: " + valor +
-                "Descricao: " + descricao +
-        "]";
+        return "Consulta => [data: %s, animal: %s, tutor: %s, valor: %s, descricao: %s]"
+                .formatted(dataConsulta, animal, tutor, valor, descricao);
     }
 }
