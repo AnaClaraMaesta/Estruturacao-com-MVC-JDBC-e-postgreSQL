@@ -28,7 +28,8 @@ public class AnimalRepository {
 
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
-                return new Animal(rs.getLong("id"), animal.getNome(), animal.getEspecie(), animal.getRaca());
+                long idGerado = rs.getLong("id");
+                return new Animal(idGerado, animal.getNome(), animal.getEspecie(), animal.getRaca());
             }
 
             throw new SQLException("Erro ao salvar animal: ID não gerado.");

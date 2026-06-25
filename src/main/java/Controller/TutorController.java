@@ -10,9 +10,9 @@ import java.util.Optional;
 public class TutorController {
     private TutorService service = new TutorService();
 
-    public void cadastrar(long id, String nome, String endereco, String telefone) throws SQLException {
+    public void cadastrar(String nome, String endereco, String telefone) throws SQLException {
         try{
-            Tutor tutor = new Tutor(id, nome,endereco, telefone);
+            Tutor tutor = new Tutor(nome,endereco, telefone);
             Tutor salvo = tutor;
             service.cadastrar(salvo);
             System.out.println("Salvo com sucesso!" + salvo);
@@ -54,6 +54,8 @@ public class TutorController {
             }else{
                 System.out.println("Tutor não encontrado!");
             }*/
+
+
         }catch (SQLException e){
             System.out.println("Erro no banco: " + e.getMessage());
         }

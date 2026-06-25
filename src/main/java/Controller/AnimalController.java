@@ -11,9 +11,9 @@ import java.util.Optional;
 public class AnimalController {
     private AnimalService service = new AnimalService();
 
-    public void cadastrar(String nome, String especie, String raca, Tutor tutor) {
+    public void cadastrar(String nome, String especie, String raca) throws SQLException {
         try {
-            Animal animal = new Animal(nome, especie, raca, tutor);
+            Animal animal = new Animal(nome, especie, raca);
             Animal salvo = service.cadastrar(animal);
             System.out.println("Animal cadastrado com sucesso! " + salvo);
         } catch (IllegalArgumentException e) {

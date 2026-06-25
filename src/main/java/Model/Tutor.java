@@ -17,7 +17,8 @@ public class Tutor {
     }
 
     public Tutor(long id, String nome, String telefone, String endereco) {
-
+        this(nome, telefone, endereco);
+        this.id = id;
     }
 
     public long getId() {
