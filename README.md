@@ -3,16 +3,16 @@
 
 create table tutor(
 	id serial primary key,
-	nome varchar(100),
+	nome varchar(100) not null,
 	endereco varchar(14),
 	telefone varchar(255)
 )
 
 create table animal(
 	id serial primary key,
-	nome varchar(100),
+	nome varchar(100) not null,
 	raca varchar(100),
-	especie varchar(100)
+	especie varchar(100) not null
 )
 
 create table consulta(
