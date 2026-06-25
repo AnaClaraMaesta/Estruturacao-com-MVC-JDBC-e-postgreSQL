@@ -20,6 +20,6 @@ create table consulta(
 	tutor_id int references tutor(id),
 	animal_id int references animal(id) not null,
 	data_consulta DATE not null,
-	descricao varchar(255) not null
-
+	descricao varchar(255) not null,
+	valor Numeric(10,2)
 )
