@@ -1,6 +1,7 @@
 # Cenario 1
 
-#TABLES
+# TABLES
+
 create table tutor(
 	id serial primary key,
 	nome varchar(100) not null,
@@ -25,6 +26,7 @@ create table consulta(
 )
 
 #REGRA DE NEGOCIO
+
 #Tutor precisa informar pelo menos nome, endereco e telefone;
 #Tutor Cadastrar o animal de um tutor, pelo menos nome, especie e raca;
 #Um tutor pode ter mais de um animal cadastrado
