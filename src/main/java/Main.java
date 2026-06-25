@@ -2,11 +2,14 @@ import Controller.AnimalController;
 import Controller.ConsultaController;
 import Controller.TutorController;
 import Model.Animal;
+import Model.Consulta;
 import Model.Tutor;
 
 import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Scanner;
 
 Scanner scan = new Scanner(System.in);
@@ -110,6 +113,7 @@ public void gerenciarTutor(int value) throws SQLException {
     switch (value) {
         case 1 -> {
             System.out.println("Nome do tutor: ");
+            scan.nextLine();
             String nome = scan.nextLine();
             System.out.println("Endereco: ");
             String endereco = scan.nextLine();
@@ -137,8 +141,11 @@ public void gerenciarTutor(int value) throws SQLException {
 public void gerenciarConsulta(int value) throws SQLException {
     switch (value) {
         case 1 -> {
-            System.out.println("data da coonsulta: ");
-            LocalDate data = LocalDate.parse(scan.nextLine());
+            scan.nextLine();
+            System.out.println("Data da consulta (dd/MM/yyyy): ");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            LocalDate data = LocalDate.parse(scan.nextLine(), formatter);
+
             System.out.println("Id do animal: ");
             long id_animal = scan.nextLong();
             scan.nextLine();
@@ -158,14 +165,18 @@ public void gerenciarConsulta(int value) throws SQLException {
 
             consultaController.cadastrar(data, animal, tutor, valor, descricao);
 
-           consultaController.cadastrar(data, animal, tutor,valor, descricao);
-
         }
         case 2 ->{
             System.out.println("Informe o Id do animal: ");
             long id_animal = scan.nextLong();
 
-            consultaController.listarPorAnimal(id_animal);
+            List<Consulta> consultas = consultaController.listarPorAnimal(id_animal);
+
+            if (consultas.isEmpty()) {
+                System.out.println("Nenhuma consulta encontrada.");
+            } else {
+                consultas.forEach(System.out::println);
+            }
         }
         case 0->{
             main();

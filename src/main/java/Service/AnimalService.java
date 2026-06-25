@@ -18,8 +18,8 @@ public class AnimalService {
         return repo.buscarPorId(id);
     }
 
-    public List<Animal> listarPorTutor(long id_tutor) throws SQLException {
-        return repo.listarPorTutor(id_tutor);
+    public List<Animal> listarPorTutor(long tutor_id) throws SQLException {
+        return repo.listarPorTutor(tutor_id);
     }
 
     public List<Animal> listarTudo() throws SQLException {

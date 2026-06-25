@@ -48,15 +48,15 @@ public class ConsultaRepository {
         }
     }
 
-    public List<Consulta> listarPorAnimal(long id_animal) throws SQLException {
+    public List<Consulta> listarPorAnimal(long animal_id) throws SQLException {
         String sql = """
-                SELECT * FROM consulta WHERE id_animal = ?
+                SELECT * FROM consulta WHERE animal_id = ?
                 """;
         List<Consulta> lista = new ArrayList<>();
 
         try(Connection conn = Conexao.getConnection();){
             PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.setLong(1, id_animal);
+            stmt.setLong(1, animal_id);
 
             ResultSet rs = stmt.executeQuery();
 
@@ -70,8 +70,6 @@ public class ConsultaRepository {
         LocalDate dataConsulta = rs.getDate("data_consulta").toLocalDate();
         BigDecimal valor = rs.getBigDecimal("valor");
         String descricao = rs.getString("descricao");
-
-        // Busca os objetos pelo id armazenado na tabela
         long animalId = rs.getLong("animal_id");
         long tutorId = rs.getLong("tutor_id");
 
