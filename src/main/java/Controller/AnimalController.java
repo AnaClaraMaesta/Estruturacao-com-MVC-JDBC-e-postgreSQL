@@ -36,15 +36,17 @@ public class AnimalController {
         }
     }
 
-    public void buscarPorId(long id) {
+    public Optional<Animal> buscarPorId(long id) {
         try {
             Optional<Animal> animal = service.buscarPorId(id);
             animal.ifPresentOrElse(
                     a -> System.out.println("Animal encontrado: " + a),
                     () -> System.out.println("Animal não encontrado.")
             );
+            return animal;
         } catch (SQLException e) {
             System.out.println("Erro no banco: " + e.getMessage());
+            return Optional.empty();
         }
     }
 }

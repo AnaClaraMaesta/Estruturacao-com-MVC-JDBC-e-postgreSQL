@@ -2,8 +2,11 @@ import Controller.AnimalController;
 import Controller.ConsultaController;
 import Controller.TutorController;
 import Model.Animal;
+import Model.Tutor;
 
+import java.math.BigDecimal;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.Scanner;
 
 Scanner scan = new Scanner(System.in);
@@ -20,7 +23,7 @@ void main() throws SQLException {
         System.out.println("2| TUTOR");
         System.out.println("3| CONSULTAS");
         System.out.println("0| ENCERRAR SISTEMA");
-        System.out.println(":");
+        System.out.print(":");
         int choice = scan.nextInt();
 
         switch (choice) {
@@ -29,7 +32,7 @@ void main() throws SQLException {
                 System.out.println("2| Listar por tutor");
                 System.out.println("3| Consultar por id");
                 System.out.println("0| Retornar");
-                System.out.println(":");
+                System.out.print(":");
                 int value = scan.nextInt();
 
                 gerenciarAnimal(value);
@@ -40,7 +43,7 @@ void main() throws SQLException {
                 System.out.println("2| Buscar Tutor");
                 System.out.println("3| Listar todos");
                 System.out.println("0| Retornar");
-                System.out.println(":");
+                System.out.print(":");
                 scan.nextLine();
                 value = scan.nextInt();
 
@@ -51,7 +54,7 @@ void main() throws SQLException {
                 System.out.println("1| Cadastrar consulta");
                 System.out.println("2| Buscar por animal");
                 System.out.println("0| Retornar");
-                System.out.println(":");
+                System.out.print(":");
                 scan.nextLine();
                 value = scan.nextInt();
 
@@ -73,6 +76,7 @@ public void gerenciarAnimal(int value) throws SQLException {
     switch (value) {
         case 1 -> {
             System.out.print("Nome do animal: ");
+            scan.nextLine();
             String nome = scan.nextLine();
 
             System.out.print("Raça de " + nome + ": ");
@@ -130,6 +134,41 @@ public void gerenciarTutor(int value) throws SQLException {
     }
 }
 
-public void gerenciarConsulta(int value){
+public void gerenciarConsulta(int value) throws SQLException {
+    switch (value) {
+        case 1 -> {
+            System.out.println("data da coonsulta: ");
+            LocalDate data = LocalDate.parse(scan.nextLine());
+            System.out.println("Id do animal: ");
+            long id_animal = scan.nextLong();
+            scan.nextLine();
+            System.out.println("Id do tutor: ");
+            long id_tutor = scan.nextLong();
+            scan.nextLine();
+            System.out.println("Descrição: ");
+            String descricao = scan.nextLine();
+            System.out.println("Valor: ");
+            BigDecimal valor = scan.nextBigDecimal();
 
+            Animal animal = animalController.buscarPorId(id_animal).orElse(null);
+            if (animal == null) return;
+
+            Tutor tutor = tutorController.buscar(id_tutor).orElse(null);
+            if (tutor == null) return;
+
+            consultaController.cadastrar(data, animal, tutor, valor, descricao);
+
+           consultaController.cadastrar(data, animal, tutor,valor, descricao);
+
+        }
+        case 2 ->{
+            System.out.println("Informe o Id do animal: ");
+            long id_animal = scan.nextLong();
+
+            consultaController.listarPorAnimal(id_animal);
+        }
+        case 0->{
+            main();
+        }
+    }
 }
