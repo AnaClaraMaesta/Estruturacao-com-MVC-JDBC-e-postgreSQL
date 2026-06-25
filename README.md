@@ -1,1 +1,25 @@
-# Estruturacao-com-MVC-JDBC-e-postgreSQL
+# Cenario 1
+
+
+create table tutor(
+	id serial primary key,
+	nome varchar(100),
+	endereco varchar(14),
+	telefone varchar(255)
+)
+
+create table animal(
+	id serial primary key,
+	nome varchar(100),
+	raca varchar(100),
+	especie varchar(100)
+)
+
+create table consulta(
+	id serial primary key,
+	tutor_id int references tutor(id),
+	animal_id int references animal(id) not null,
+	data_consulta DATE not null,
+	descricao varchar(255) not null
+
+)
