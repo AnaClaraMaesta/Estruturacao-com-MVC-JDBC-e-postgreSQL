@@ -13,6 +13,11 @@ public class ServicoService {
         repo.salvar(servico);
     }
 
+    public void update(Servico servico) throws SQLException
+    {
+        repo.atualizar(servico);
+    }
+
     public Servico buscarPorIdCliente(long id) throws SQLException{
         return repo.buscarPorIdCliente(id).orElse(null);
     }
