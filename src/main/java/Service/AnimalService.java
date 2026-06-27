@@ -26,5 +26,9 @@ public class AnimalService {
         return repo.listarTodos();
     }
 
+    public void deletar(long id_animal) throws SQLException {
+        repo.deletar(id_animal);
+    }
+
 
 }

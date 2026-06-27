@@ -17,4 +17,8 @@ public class ConsultaService {
     public Consulta finalizar(Consulta consulta) throws SQLException {
         return repo.salvar(consulta);
     }
+
+    public void deletar(Consulta consulta) throws SQLException {
+
+    }
 }

@@ -54,7 +54,7 @@ public class ConsultaRepository {
                 """;
         List<Consulta> lista = new ArrayList<>();
 
-        try(Connection conn = Conexao.getConnection();){
+        try(Connection conn = Conexao.getConnection()){
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setLong(1, id_animal);
 
@@ -63,6 +63,20 @@ public class ConsultaRepository {
             while (rs.next()) lista.add(mapear(rs));
         }
         return lista;
+    }
+
+    public void deletar(Consulta consulta) throws SQLException {
+        String sql = """
+                DELETE FROM consulta WHERE id = ?
+                """;
+
+        long id_animal =  consulta.getId();
+
+        try(Connection conn = Conexao.getConnection()){
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setLong(1, id_animal);
+            stmt.executeUpdate();
+        }
     }
 
     private Consulta mapear(ResultSet rs) throws SQLException {

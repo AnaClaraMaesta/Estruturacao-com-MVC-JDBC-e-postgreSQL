@@ -28,6 +28,7 @@ void main() throws SQLException {
                 System.out.println("1| Cadastrar animal");
                 System.out.println("2| Listar por tutor");
                 System.out.println("3| Consultar por id");
+                System.out.println("4| Excluir cadastro");
                 System.out.println("0| Retornar");
                 System.out.println(":");
                 int value = scan.nextInt();
@@ -95,6 +96,13 @@ public void gerenciarAnimal(int value) throws SQLException {
             scan.nextLine();
 
             animalController.buscarPorId(id_animal);
+        }
+        case 4 ->{
+            System.out.println("1| Id do animal: ");
+            long id_animal = scan.nextLong();
+            scan.nextLine();
+
+            animalController.excluir(id_animal);
         }
         case 0->{
             main();

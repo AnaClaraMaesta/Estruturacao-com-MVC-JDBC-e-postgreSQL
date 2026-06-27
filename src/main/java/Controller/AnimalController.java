@@ -47,4 +47,12 @@ public class AnimalController {
             System.out.println("Erro no banco: " + e.getMessage());
         }
     }
+
+    public void excluir(long id_animal) throws SQLException {
+        try{
+            service.deletar(id_animal);
+        }catch(SQLException e){
+            System.out.println("Erro no banco: " + e.getMessage());
+        }
+    }
 }
