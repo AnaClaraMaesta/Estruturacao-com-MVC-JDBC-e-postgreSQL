@@ -13,6 +13,7 @@ public class Consulta
     private Tutor tutor;
     private BigDecimal valor;
     private String descricao;
+
     //antes de salvar
     public Consulta(LocalDate dataConsulta, Animal animal, Tutor tutor, BigDecimal valor, String descricao)
     {

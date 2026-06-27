@@ -65,7 +65,7 @@ public class TutorRepository {
         }
     }
 
-    public void deletar(Long id) throws SQLException {
+    public void deletar(long id) throws SQLException {
         String sql = "DELETE FROM tutor WHERE id = ?";
         try (Connection conn = Conexao.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {

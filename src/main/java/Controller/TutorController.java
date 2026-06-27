@@ -61,4 +61,11 @@ public class TutorController {
         }
     }
 
+    public void deletar(long id) throws SQLException {
+        try{
+            service.deletar(id);
+        }catch (SQLException e){
+            System.out.println("Erro no banco: " + e.getMessage());
+        }
+    }
 }

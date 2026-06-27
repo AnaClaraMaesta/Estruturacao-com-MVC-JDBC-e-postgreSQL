@@ -40,6 +40,7 @@ void main() throws SQLException {
                 System.out.println("1| Cadastrar Tutor");
                 System.out.println("2| Buscar Tutor");
                 System.out.println("3| Listar todos");
+                System.out.println("4| Excluir cadastro");
                 System.out.println("0| Retornar");
                 System.out.println(":");
                 scan.nextLine();
@@ -51,6 +52,7 @@ void main() throws SQLException {
             case 3:
                 System.out.println("1| Cadastrar consulta");
                 System.out.println("2| Buscar por animal");
+                System.out.println("3| Excluir cadastro");
                 System.out.println("0| Retornar");
                 System.out.println(":");
                 scan.nextLine();
@@ -131,6 +133,12 @@ public void gerenciarTutor(int value) throws SQLException {
         }
         case 3 ->{
             tutorController.listar();
+        }
+        case 4 ->{
+            System.out.println("1| Id do tutor: ");
+            long id_tutor = scan.nextLong();
+            scan.nextLine();
+            tutorController.deletar(id_tutor);
         }
         case 0->{
             main();

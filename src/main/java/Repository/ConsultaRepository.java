@@ -65,16 +65,14 @@ public class ConsultaRepository {
         return lista;
     }
 
-    public void deletar(Consulta consulta) throws SQLException {
+    public void deletar(long id_consulta) throws SQLException {
         String sql = """
                 DELETE FROM consulta WHERE id = ?
                 """;
 
-        long id_animal =  consulta.getId();
-
         try(Connection conn = Conexao.getConnection()){
             PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.setLong(1, id_animal);
+            stmt.setLong(1, id_consulta);
             stmt.executeUpdate();
         }
     }
@@ -85,7 +83,6 @@ public class ConsultaRepository {
         BigDecimal valor = rs.getBigDecimal("valor");
         String descricao = rs.getString("descricao");
 
-        // Busca os objetos pelo id armazenado na tabela
         long animalId = rs.getLong("animal_id");
         long tutorId = rs.getLong("tutor_id");
 

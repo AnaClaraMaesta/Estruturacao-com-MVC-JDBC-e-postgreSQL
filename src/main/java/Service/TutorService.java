@@ -22,5 +22,9 @@ public class TutorService {
         return repo.listarTodos();
     }
 
+    public void deletar(long id_consulta) throws SQLException {
+        repo.deletar(id_consulta);
+    }
+
 
 }

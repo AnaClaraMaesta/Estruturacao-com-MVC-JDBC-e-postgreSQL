@@ -35,4 +35,12 @@ public class ConsultaController {
             System.out.println("Valor inválido: " + e.getMessage());
         }
     }
+
+    public void deletar(long id_consulta) throws SQLException {
+        try{
+            service.deletar(id_consulta);
+        }catch (SQLException e){
+            System.out.println("Erro no banco: " + e.getMessage());
+        }
+    }
 }

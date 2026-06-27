@@ -18,7 +18,7 @@ public class ConsultaService {
         return repo.salvar(consulta);
     }
 
-    public void deletar(Consulta consulta) throws SQLException {
-
+    public void deletar(long id_consulta) throws SQLException {
+        repo.deletar(id_consulta);
     }
 }
