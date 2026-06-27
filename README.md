@@ -1,4 +1,5 @@
 # Estruturacao-com-MVC-JDBC-e-postgreSQL
+
 #Tables
 Create table cliente(
 	id serial primary key,
@@ -13,6 +14,8 @@ create table veiculo(
 	ano int not null
 )
 
+
+
 create table servico(
 	id serial primary key,
 	id_cliente references cliente(id),
@@ -20,6 +23,11 @@ create table servico(
 	valor numeric(10,2),
 	descricao varchar(255)
 )
+
+
+
+
+
 #Regras de negócio
 Não permitir abrir uma ordem de serviço para um veículo que não esteja cadastrado;
 O valor do serviço não pode ser negativo;
