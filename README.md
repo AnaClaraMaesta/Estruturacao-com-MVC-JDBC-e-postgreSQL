@@ -19,8 +19,8 @@ create table veiculo(
 
 create table servico(
 	id serial primary key,
-	id_cliente references cliente(id),
-	id_veiculo references veiculo(id),
+	id_cliente int references cliente(id),
+	id_veiculo int references veiculo(id),
 	valor numeric(10,2),
 	descricao varchar(255)
 )
