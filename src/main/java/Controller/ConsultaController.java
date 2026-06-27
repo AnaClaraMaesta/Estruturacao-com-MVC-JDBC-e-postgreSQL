@@ -9,6 +9,7 @@ import Service.ConsultaService;
 import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.List;
 
 public class ConsultaController {
     private ConsultaService service = new  ConsultaService();
@@ -26,13 +27,16 @@ public class ConsultaController {
         }
     }
 
-    public void listarPorAnimal(long id_animal) throws SQLException {
+    public List<Consulta> listarPorAnimal(long animal_id) throws SQLException {
         try{
-            service.listarPorAnimal(id_animal);
+            return service.listarPorAnimal(animal_id);
+
         }catch (SQLException e){
             System.out.println("Erro no banco: " + e.getMessage());
+            return List.of();
         }catch(IllegalArgumentException e){
             System.out.println("Valor inválido: " + e.getMessage());
+            return List.of();
         }
     }
 

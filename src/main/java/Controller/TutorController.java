@@ -40,13 +40,14 @@ public class TutorController {
         }
     }
 
-    public void buscar(long id) throws SQLException {
+    public Optional<Tutor> buscar(long id) throws SQLException {
         try{
             Optional<Tutor> tutor = service.buscarPorId(id);
             tutor.ifPresentOrElse(
                     t -> System.out.println("Tutor encontrado: " + t),
                     () -> System.out.println("Tutor não encontrado.")
             );
+            return tutor;
 
 
             /* if(tutor.isPresent()){
@@ -58,6 +59,7 @@ public class TutorController {
 
         }catch (SQLException e){
             System.out.println("Erro no banco: " + e.getMessage());
+            return Optional.empty();
         }
     }
 
