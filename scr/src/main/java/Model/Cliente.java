@@ -6,6 +6,11 @@ public class Cliente {
     private String telefone;
 
     public Cliente(String nome, String telefone){
+
+        if(nome == null || nome.isBlank() || telefone == null || telefone.isBlank()){
+            throw new IllegalArgumentException("Informe o nome e o telefone");
+        }
+
         this.nome = nome;
         this.telefone = telefone;
     }
