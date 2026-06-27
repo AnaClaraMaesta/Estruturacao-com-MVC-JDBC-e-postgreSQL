@@ -38,9 +38,45 @@ public class ClienteRepository {
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setString(1, nome);
             stmt.setString(2, telefone);
-            ResultSet rs = stmt.executeQuery();
-            rs.getLong("id");
+            stmt.setLong(3, id);
+            int rs = stmt.executeUpdate();
 
+            return new Cliente(id, nome, telefone);
         }
+    }
+
+    public void excluir(long id) throws SQLException {
+        String sql = """
+                DELETE FROM cliente
+                WHERE id = ?;
+        """;
+        try(Connection conn = Conexao.getConnection()){
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setLong(1, id);
+            int rs = stmt.executeUpdate();
+        }
+    }
+
+    public Optional<Cliente> buscarPorId(long id) throws SQLException {
+        String sql = """
+                SELECT * FROM cliente
+                WHERE id = ?;
+        """;
+
+        try(Connection conn = Conexao.getConnection()){
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setLong(1, id);
+            ResultSet rs = stmt.executeQuery();
+
+            return rs.next() ? Optional.of(mapear(rs)) : Optional.empty();
+        }
+    }
+
+    private Cliente mapear(ResultSet rs) throws SQLException {
+        long id = rs.getLong("id");
+        String nome = rs.getString("nome");
+        String telefone = rs.getString("telefone");
+
+        return new Cliente(id, nome,telefone);
     }
 }

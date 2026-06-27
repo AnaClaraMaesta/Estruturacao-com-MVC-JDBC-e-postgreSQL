@@ -15,7 +15,7 @@ public class Veiculo {
         if(modelo == null || modelo.isBlank()) erros.add("Informe o modelo do veículo");
         if(ano > 2026 || ano < 1886) erros.add("Informe um ano válido");
 
-        //segundo o google:
+        //segundo o google 🤓☝️:
         //O primeiro automóvel com motor de combustão interna, considerado o carro moderno,
         // foi inventado pelo engenheiro alemão Karl Benz em 1885. Ele patenteou o veículo,
         // conhecido como Benz Patent-Motorwagen, em 29 de janeiro de 1886

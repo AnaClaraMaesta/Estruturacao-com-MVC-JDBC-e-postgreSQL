@@ -3,6 +3,7 @@ package Model;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class Servico {
     private long id;
@@ -32,6 +33,7 @@ public class Servico {
         this.id = id;
     }
 
+
     public long getId() {
         return id;
     }
@@ -52,7 +54,7 @@ public class Servico {
         return descricao;
     }
 
-    public boolean isConcluida() {
+    public boolean _isConcluida() {
         return isConcluida;
     }
 }
