@@ -22,7 +22,8 @@ create table servico(
 	id_cliente int references cliente(id),
 	id_veiculo int references veiculo(id),
 	valor numeric(10,2),
-	descricao varchar(255)
+	descricao varchar(255),
+	isConcluida boolean default false not null
 )
 
 
