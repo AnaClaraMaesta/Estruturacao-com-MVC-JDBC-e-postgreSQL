@@ -194,6 +194,23 @@ public void gerenciarConsulta(int value) throws SQLException {
                 consultas.forEach(System.out::println);
             }
         }
+        case 3 ->{
+            System.out.print("Informe o Id da consulta\n: ");
+            long id_consulta = scan.nextLong();
+            scan.nextLine();
+
+            boolean certeza = false;
+
+            while(certeza == false){
+                System.out.print("tem certeza que deseja excluir a consulta?\n1| sim\n2| não \n:");
+                if(scan.nextLine().equals("1")){
+                    consultaController.deletar(id_consulta);
+                    certeza = true;
+                }else{
+                    main();
+                }
+            }
+        }
         case 0->{
             main();
         }
