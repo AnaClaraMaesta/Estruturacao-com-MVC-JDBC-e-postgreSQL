@@ -1,6 +1,7 @@
 # Estruturacao-com-MVC-JDBC-e-postgreSQL
 
 #Tables
+
 Create table cliente(
 	id serial primary key,
 	nome varchar(100) not null,
