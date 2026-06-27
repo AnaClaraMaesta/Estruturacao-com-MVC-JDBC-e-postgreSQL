@@ -15,8 +15,6 @@ create table veiculo(
 	ano int not null
 )
 
-
-
 create table servico(
 	id serial primary key,
 	id_cliente int references cliente(id),
@@ -27,10 +25,8 @@ create table servico(
 )
 
 
-
-
-
 #Regras de negócio
+
 Não permitir abrir uma ordem de serviço para um veículo que não esteja cadastrado;
 O valor do serviço não pode ser negativo;
 E preciso conseguir consultar todo o histórico de manutenções de um determinado veículo;
