@@ -51,12 +51,29 @@ public class AnimalController {
         }
     }
 
-    public List<Animal> listarTodos() {
-        try{
-            return service.listarTudo();
-        }catch(SQLException e){
+    public void listarTodos() {
+        try {
+            List<Animal> animais = service.listarTudo();
+
+            if (animais.isEmpty()) {
+                System.out.println("Nenhum animal encontrado.");
+            } else {
+                System.out.println("\n=== LISTA DE ANIMAIS ===");
+                for (Animal a : animais) {
+                    System.out.printf("ID: %d | Nome: %s | Espécie: %s | Raça: %s%n",
+                            a.getId(), a.getNome(), a.getEspecie(), a.getRaca());
+                }
+            }
+        } catch(SQLException e) {
             System.out.println("Erro no banco: " + e.getMessage());
-            return List.of();
+        }
+    }
+
+    public void update(long id, String nome, String raca, String especie) throws SQLException {
+        try{
+            service.update(id, nome, especie,raca);
+        }catch (SQLException e){
+            System.out.println("Erro no banco: " + e.getMessage());
         }
     }
 

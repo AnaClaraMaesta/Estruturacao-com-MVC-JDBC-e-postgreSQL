@@ -57,13 +57,14 @@ public class AnimalRepository {
         return lista;
     }
 
-    public void atualizar(Animal animal) throws SQLException {
+    public void atualizar(long id, String nome, String especie, String raca) throws SQLException {
         String sql = "UPDATE animal SET nome = ?, raca = ?, especie = ? WHERE id = ?";
         try (Connection conn = Conexao.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setString(1, animal.getNome());
-            stmt.setString(2, animal.getRaca());
-            stmt.setLong(3, animal.getId());
+            stmt.setString(1,nome);
+            stmt.setString(2, raca);
+            stmt.setString(3, especie );
+            stmt.setLong(4, id);
             stmt.executeUpdate();
         }
     }

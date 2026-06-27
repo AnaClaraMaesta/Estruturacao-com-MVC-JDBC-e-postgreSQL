@@ -35,6 +35,8 @@ void main() throws SQLException {
                 System.out.println("2| Listar por tutor");
                 System.out.println("3| Consultar por id");
                 System.out.println("4| Excluir cadastro");
+                System.out.println("5| Atualizar cadastro");
+                System.out.println("6| Listar todos");
                 System.out.println("0| Retornar");
                 System.out.print(":");
                 int value = scan.nextInt();
@@ -47,6 +49,7 @@ void main() throws SQLException {
                 System.out.println("2| Buscar Tutor");
                 System.out.println("3| Listar todos");
                 System.out.println("4| Excluir cadastro");
+                System.out.println("5| Atualizar cadastro");
                 System.out.println("0| Retornar");
                 System.out.print(":");
                 scan.nextLine();
@@ -59,6 +62,7 @@ void main() throws SQLException {
                 System.out.println("1| Cadastrar consulta");
                 System.out.println("2| Buscar por animal");
                 System.out.println("3| Excluir cadastro");
+                System.out.println("4| Atualizar cadastro");
                 System.out.println("0| Retornar");
                 System.out.print(":");
                 scan.nextLine();
@@ -113,6 +117,25 @@ public void gerenciarAnimal(int value) throws SQLException {
 
             animalController.excluir(id_animal);
         }
+        case 5 ->{
+            System.out.println("1| Id do animal: ");
+            long id_animal = scan.nextLong();
+            scan.nextLine();
+
+            System.out.print("Nome do animal: ");
+            scan.nextLine();
+            String nome = scan.nextLine();
+
+            System.out.print("Raça de " + nome + ": ");
+            String raca = scan.nextLine();
+            System.out.print("Espécie de " + nome + ": ");
+            String especie = scan.nextLine();
+
+            animalController.update(id_animal, nome, raca, especie);
+        }
+        case 6 ->{
+            animalController.listarTodos();
+        }
         case 0->{
             main();
         }
@@ -147,6 +170,20 @@ public void gerenciarTutor(int value) throws SQLException {
             long id_tutor = scan.nextLong();
             scan.nextLine();
             tutorController.deletar(id_tutor);
+        }
+        case 5 ->{
+            System.out.println("1| Id do tutor: ");
+            long id_tutor = scan.nextLong();
+            scan.nextLine();
+            System.out.println("Nome do tutor: ");
+            scan.nextLine();
+            String nome = scan.nextLine();
+            System.out.println("Endereco: ");
+            String endereco = scan.nextLine();
+            System.out.println("Telefone: ");
+            String telefone = scan.nextLine();
+
+            tutorController.update(new Tutor(id_tutor, nome, endereco, telefone));
         }
         case 0->{
             main();
@@ -210,6 +247,31 @@ public void gerenciarConsulta(int value) throws SQLException {
                     main();
                 }
             }
+        }
+        case 4 ->{
+            scan.nextLine();
+            System.out.println("Data da consulta (dd/MM/yyyy): ");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            LocalDate data = LocalDate.parse(scan.nextLine(), formatter);
+
+            System.out.println("Id do animal: ");
+            long id_animal = scan.nextLong();
+            scan.nextLine();
+            System.out.println("Id do tutor: ");
+            long id_tutor = scan.nextLong();
+            scan.nextLine();
+            System.out.println("Descrição: ");
+            String descricao = scan.nextLine();
+            System.out.println("Valor: ");
+            BigDecimal valor = scan.nextBigDecimal();
+
+            Animal animal = animalController.buscarPorId(id_animal).orElse(null);
+            if (animal == null) return;
+
+            Tutor tutor = tutorController.buscar(id_tutor).orElse(null);
+            if (tutor == null) return;
+
+            consultaController.update(new Consulta(data, animal, tutor, valor, descricao));
         }
         case 0->{
             main();

@@ -48,6 +48,35 @@ public class ConsultaRepository {
         }
     }
 
+    public void atualizar(Consulta consulta) throws SQLException {
+        String sql = """
+            UPDATE consulta
+            SET animal_id = ?, tutor_id = ?, data_consulta = ?, descricao = ?, valor = ?
+            WHERE id = ?;
+        """;
+
+        Connection conn = Conexao.getConnection();
+        try {
+            conn.setAutoCommit(false);
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setLong(1, consulta.getAnimal().getId());
+            stmt.setLong(2, consulta.getTutor().getId());
+            stmt.setDate(3, Date.valueOf(consulta.getDataConsulta()));
+            stmt.setString(4, consulta.getDescricao());
+            stmt.setBigDecimal(5, consulta.getValor());
+            stmt.setLong(6, consulta.getId());
+
+            int rs = stmt.executeUpdate();
+            conn.commit();
+
+        }catch (SQLException e){
+            conn.rollback();
+            throw e;
+        }finally{
+            conn.close();
+        }
+    }
+
     public List<Consulta> listarPorAnimal(long id_animal) throws SQLException {
         String sql = """
                 SELECT * FROM consulta WHERE id_animal = ?

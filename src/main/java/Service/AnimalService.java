@@ -31,4 +31,8 @@ public class AnimalService {
     }
 
 
+    public void update(long id, String nome, String especie, String raca) throws SQLException {
+        repo.atualizar(id, nome, especie, raca);
+    }
+
 }

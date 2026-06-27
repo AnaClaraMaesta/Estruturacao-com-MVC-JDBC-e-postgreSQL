@@ -40,6 +40,14 @@ public class ConsultaController {
         }
     }
 
+    public void update(Consulta consulta) throws SQLException {
+        try{
+            service.update(consulta);
+        }catch (SQLException e){
+            System.out.println("Erro no banco: " + e.getMessage());
+        }
+    }
+
     public void deletar(long id_consulta) throws SQLException {
         try{
             service.deletar(id_consulta);

@@ -26,5 +26,8 @@ public class TutorService {
         repo.deletar(id_consulta);
     }
 
+    public void update(Tutor tutor) throws SQLException {
+        repo.atualizar(tutor);
+    }
 
 }

@@ -23,6 +23,14 @@ public class TutorController {
         }
     }
 
+    public void update(Tutor tutor) throws SQLException {
+        try{
+            service.update(tutor);
+        }catch (SQLException e){
+            System.out.println("Erro no banco: " + e.getMessage());
+        }
+    }
+
     public void listar() throws SQLException {
         try{
             List<Tutor> tutores = service.listarTudo();
