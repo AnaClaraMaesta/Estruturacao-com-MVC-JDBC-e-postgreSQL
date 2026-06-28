@@ -1,27 +1,44 @@
 package org.trabalho.Service;
 
+import org.trabalho.Model.Alunos;
 import org.trabalho.Model.Cursos;
 import org.trabalho.Model.Matricula;
 import org.trabalho.Repository.Alunorepository;
 import org.trabalho.Repository.Cursorepository;
 import org.trabalho.Repository.Matricularepository;
 
+import java.math.BigInteger;
 import java.sql.SQLException;
 
 public class CursosService {
 
-    private Matricularepository matricularepository;
-    private Cursorepository cursorepository;
 
-    public CursosService(Matricularepository matricularepository, Cursorepository cursorepository) {
-        this.matricularepository = matricularepository;
-        this.cursorepository = cursorepository;
+    Cursorepository cursorepository = new Cursorepository();
+
+
+    public Object cursoCadastrar(Cursos curso) throws SQLException {
+        return cursorepository.cadastrar(curso);
     }
 
-    public void reduzirQuantidade(Cursos cursos) throws SQLException {
-        cursos.reduzir(matricularepository.listarMatricula().size());
-        cursorepository.atualizarQuantidade(cursos.getId(),
-                cursos.getVagas_disponiveis()
-        );
+    public Object cursoConsultaTodos() throws SQLException {
+        return cursorepository.listarCursos();
+
     }
+
+
+    public  Object cursoConsultaNome(String nome) throws SQLException {
+        return cursorepository.buscarPorNome(nome);
+    }
+
+    public void cursoAtualisar(Cursos curso) throws SQLException {
+        cursorepository.atualizar(curso);
+    }
+
+
+    public void cursoDeletar(BigInteger id) throws SQLException {
+        cursorepository.deletar(id);
+    }
+
+
+
 }

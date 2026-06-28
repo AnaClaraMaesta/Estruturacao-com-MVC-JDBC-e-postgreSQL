@@ -79,7 +79,7 @@ public class Matricularepository {
     }
 
     public void atualizar(Matricula matricula) throws SQLException {
-        String sql = "UPDATE matricula SET valor = ?, WHERE id = ?";
+        String sql = "UPDATE matricula SET valor = ? WHERE id = ?";
         try (Connection conn = Conexao.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setBigDecimal(1, matricula.getValor());

@@ -1,41 +1,36 @@
 package org.trabalho.Controller;
-
 import org.trabalho.Model.Alunos;
-import org.trabalho.Repository.Alunorepository;
-import org.trabalho.Repository.Cursorepository;
-import org.trabalho.Repository.Matricularepository;
-
+import org.trabalho.Service.Alunosservice;
 import java.math.BigInteger;
 import java.sql.SQLException;
 
 public class AlunosController {
 
-    Alunorepository alunorepository = new Alunorepository();
-    private Alunos alunos;
+    Alunosservice alunosservice = new Alunosservice();
 
     public void alunosCadastrar(String nome, String email, String telefone) throws SQLException {
-        alunos = new Alunos( null, nome, email, telefone);
-        alunorepository.cadastrar(alunos);
-        System.out.println("\n");
+       Alunos aluno = new Alunos(null, nome, email, telefone);
+        alunosservice.alunosCadastrar(aluno);
+        System.out.println("Aluno cadastrado\n");
     }
 
     public void alunosConsultaTodos() throws SQLException {
-        System.out.println(alunorepository.listarAlunos() + "\n");
+        System.out.println(alunosservice.alunosConsultaTodos());
     }
-
-
     public void alunosConsultaNome(String nome) throws SQLException {
-        System.out.println(alunorepository.buscarPorNome(nome) + "\n");
+        System.out.println(alunosservice.alunosConsultaNome(nome));
+
     }
 
     public void alunosAtualisar(String nome, String email, String telefone, Long id) throws SQLException {
-        alunos = new Alunos(id, nome, email, telefone);
-        alunorepository.atualizar(alunos);
+        Alunos aluno = new Alunos(id, nome, email, telefone);
+        alunosservice.alunosAtualisar(aluno);
+        System.out.println("Atualizado\n");
     }
 
 
     public void alunosDeletar(BigInteger id) throws SQLException {
-        alunorepository.deletar(id);
+        alunosservice.alunosDeletar(id);
         System.out.println("ID deletado\n");
     }
 
