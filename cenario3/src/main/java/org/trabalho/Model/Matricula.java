@@ -15,12 +15,6 @@ public class Matricula {
     private BigDecimal valor;
 
     public Matricula( Long id, Long id_aluno,String nome_aluno, Long id_curso, String nome_curso,  Timestamp data_matricula, BigDecimal valor  ){
-        if (id_aluno == null || id_aluno.intValue() <= 0){
-            System.out.println("O aluno não existe cadastre-o primeiro ");
-        }
-        if (id_curso == null || id_curso.intValue() <= 0){
-            System.out.println("O curso não existe cadatre-o primeiro");
-        }
         if (valor.compareTo(BigDecimal.ZERO) < 0  ){
             System.out.println("O valor da matricula não pode ser negativo ");
         }

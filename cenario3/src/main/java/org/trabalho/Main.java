@@ -216,7 +216,7 @@ public void gerenciarMatricula(int value) throws SQLException {
             matriculaController.matriculaAtualisar(valor, id);
         }
         case 6 -> {
-            System.out.println("Id do curso a ser deletado: ");
+            System.out.println("Id da matricula a ser deletado: ");
             BigInteger id = scan.nextBigInteger();
             matriculaController.matriculaDeletar(id);
         }
