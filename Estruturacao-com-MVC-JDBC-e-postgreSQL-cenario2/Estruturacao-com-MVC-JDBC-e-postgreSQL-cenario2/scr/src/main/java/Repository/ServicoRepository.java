@@ -33,6 +33,7 @@ public class ServicoRepository {
             ResultSet rs = stmt.executeQuery();
             if(rs.next()){
                 long id_servico = rs.getLong("id");
+                conn.commit();
                 return new Servico(id_servico, servico.getVeiculo(),servico.getCliente(), servico.getValor(), servico.getDescricao(), servico._isConcluida());
             }
 
